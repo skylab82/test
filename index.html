@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="viewport-fit=cover, initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <!--<meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">-->
+        <title>Betflag Casinò</title>
+        <link type="text/css" rel="stylesheet" href="css/style.css" />
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href='https://fonts.googleapis.com/css?family=Lato:200,300,400,600' rel='stylesheet'>
+        <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/custom.js"></script>
+        <script>
+          // Create IE + others compatible event handler
+          var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+          var eventer = window[eventMethod];
+          var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+
+          // Listen to message from child window
+          eventer(messageEvent,function(e) {
+            //nascondo header o footer
+            switch (e.data) {
+              case "true":
+                HideNav(JSON.parse(e.data));
+              break;
+              case "false":
+                HideNav(JSON.parse(e.data));
+                break;
+              case "session":
+                logout();
+                break;
+            }
+          },false);
+        </script>
+    </head>
+    <body>
+        <script type="text/javascript" src="cordova.js"></script>
+
+        <!-- BEGIN # MODAL LOGIN -->
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header" align="center">
+                <img class="logo-app" src="images/betflagWhite.png"></img>
+                <h2>Accedi</h2>
+                <!--<button type="button" class="close" onclick="closedModal()" data-dismiss="modal" aria-label="Close">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>-->
+                </button>
+              </div>
+              <!-- Begin # DIV Form -->
+              <div id="div-forms">
+                <!-- Begin # Login Form -->
+                <form id="login-form">
+                  <div class="modal-body">
+                  <div id="div-login-msg">
+                    <div class="loader">
+                      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                         width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                        <rect x="0" y="10" width="4" height="10" fill="#fff" opacity="0.2">
+                          <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                          <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                          <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+                        </rect>
+                        <rect x="8" y="10" width="4" height="10" fill="#fff"  opacity="0.2">
+                          <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                          <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                          <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.15s" dur="0.6s" repeatCount="indefinite" />
+                        </rect>
+                        <rect x="16" y="10" width="4" height="10" fill="#fff"  opacity="0.2">
+                          <animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                          <animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                          <animate attributeName="y" attributeType="XML" values="10; 5; 10" begin="0.3s" dur="0.6s" repeatCount="indefinite" />
+                        </rect>
+                      </svg>
+                    </div>
+                    <span id="text-login-msg"></span>
+                  </div>
+                  <label for="TextBoxUser">Username</label>
+                  <input id="login_username" class="form-control" type="text" placeholder="" required>
+                  <label for="TextBoxUser">Password</label>
+                  <input id="login_password" class="form-control" type="password" placeholder="" required>
+                  <div class="checkbox">
+                    <input id="rememberMe" class="checkbox-custom" name="checkbox-1" type="checkbox">
+                    <label for="rememberMe" class="checkbox-custom-label">Ricorda Username</label>
+                    <!--<label>
+                      <input id ="rememberMe" type="checkbox"> Ricorda Username
+                    -->
+                    </label>
+                  </div>
+                  <div>
+                    <button id="login" type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+                  </div>
+                  <div class="external-log">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-xs-6 col-lg-4 text-left nopadding"><a href="#" class="navLink small" data-url="https://m.betflag.it/ForgotPassword.aspx">Hai dimenticato la password?</a></div>
+                        <div class="col-xs-6 col-lg-4 text-right nopadding"><a href="#" class="navLink small" data-url="https://m.betflag.it/ForgotPassword.aspx">Hai dimenticato la username?</a></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  </div>
+                  <div class="modal-footer">
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center ">
+                        <a id="login_register_btn" class="btn btn-lg popupSignup">Registrati</a>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                      <button type="button" data-dismiss="modal" class="btn btn-link">Continua senza registrazione</button>
+                    </div>
+                  </div>
+                </form>
+              <!-- End # Login Form -->
+              </div>
+              <!-- End # DIV Form -->
+
+            </div>
+          </div>
+        </div>
+        <div class="icon-left">
+          <a href="index.html"><span class="glyphicon glyphicon-menu-left"></span></a>
+        </div>
+            <!-- END # MODAL LOGIN -->
+        <iframe src="index.html" id = "myFrame" onload="autoResize(this);" scrolling="yes" frameborder="0" height="100%" width="100%"></iframe>
+
+        <div class="header-main navbar navbar-default navbar-fixed-top">
+          <img class="logo-app" src="images/Logo.png"></img>
+          <img class="logo-ams" src="images/aams.svg" alt="ams">
+
+          <span class="open-login" data-toggle="modal" data-target="#login-modal">LOGIN</span>
+          <span class="logout-login"><span class="glyphicon glyphicon-off" onclick="logout()"></span></span>
+        </div>
+
+        <div class="navbar navbar-default navbar-fixed-bottom">
+          <div class="container">
+            <ul id = "myTab" class="nav nav-tabs">
+              <li class="active"><a id="1" href="#1" onclick="switchTabInIframe(1)" ;><span class="glyphicon glyphicon-home"></span>Home</a></li>
+              <li><a id="2" href="#2" onclick="switchTabInIframe(2)" ;><span class="glyphicon glyphicon-user"></span> Il mio conto</a></li>
+            </ul>
+          </div>
+        </div>
+    </body>
+</html>

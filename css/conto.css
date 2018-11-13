@@ -1,0 +1,35 @@
+body{
+  padding: 0px;
+  margin: 0px;
+}
+
+.icon{
+  padding-top: 20px;
+  text-align: center;
+  color: #038ccb;
+}
+
+
+.info-user{
+  text-align: center;
+}
+
+.item{
+  font-family: 'Roboto', sans-serif;
+  min-height: 40px;
+  width: 100%;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #e7e7e7;
+  padding: 10px;
+
+}
+
+.item span{
+  float: right;
+  margin-right: 20px;
+}
+.item a{
+  text-decoration: none;
+    display: block;
+
+}

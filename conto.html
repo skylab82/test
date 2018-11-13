@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link type="text/css" rel="stylesheet" href="css/conto.css" />
+        <link href='https://fonts.googleapis.com/css?family=Lato:200,300,400,600' rel='stylesheet'>
+        <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+
+    </head>
+    <body>
+      <script>
+    		$(document).ready(function() {
+      		function getSaldo(){
+      		  var saldoItem = sessionStorage.getItem("saldo");
+      		  if (saldoItem) {
+      			  var saldo = parseFloat(saldoItem) / 100;
+      		  }
+      		  return saldo.toFixed(2);
+      		}
+      		$('#user').html(sessionStorage.getItem("username"));
+      		$('#saldo').html(getSaldo());
+    		});
+
+        var prefix = "https://m.betflag.it";
+        var cID = "F60DAE31-F51E-49CB-8FDB-D2A085E25FD3"
+        /*LISTA MOVIMENTI*/
+        var listaMovimentiAddress = "https://m.betflag.it/app/casino/transaction/#TOKEN#";//"https://ippica.mediasystemtechnologies.it/listmobile.aspx?cID=#CID#&sID=#TOKEN#";
+
+        /*VERSAMENTO*/
+        var versamentoAddress = prefix + "/app/ippica/depositlist/";
+
+    		function openURL(id){
+    			switch (id) {
+            case 1:
+              var item = sessionStorage.getItem("login");
+              if (item != undefined) {
+                  var token = JSON.parse(item).Token; // token
+                  window.open(listaMovimentiAddress.replace("#TOKEN#", token), '_system');
+              }
+              break;
+            case 2:
+              var item = sessionStorage.getItem("login");
+              if (item != undefined) {
+                  var token = JSON.parse(item).Token; // token
+
+                  // da controllare perchè il token non è presente nel vecchio codice
+                  window.open(versamentoAddress.replace("#TOKEN#", token), '_system');
+              }
+              break;
+          }
+    		}
+      </script>
+      <div class="container-fluid">
+
+
+        <div class="icon">
+          <span class="glyphicon glyphicon-user"></span>
+          <h5>Il mio conto</h5>
+        </div>
+        <div class="info-user">
+          <div class="col-xs-6">
+            <label>Username</label>
+            <p id= "user" ></p>
+          </div>
+          <div class="col-xs-6">
+            <label>Saldo</label>
+            <p id= "saldo"></p>
+          </div>
+        </div>
+      </div>
+      <div class="item"><a onclick="openURL(1)" href="#">Lista Movimenti<span class="glyphicon glyphicon-chevron-right"></span></a></div>
+      <div class="item"><a onclick="openURL(2)" href="#">Versamento<span class="glyphicon glyphicon-chevron-right"></span></a></div>
+    </body>
+</html>
