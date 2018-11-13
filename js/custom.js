@@ -298,6 +298,8 @@ function CheckTAG(app) {
 
     $('#login_username').val('');
     $('#login_password').val('');
+    var ifd = document.getElementById("myFrame");
+    ifd.contentWindow.postMessage('logOut', '*');
     window.location.href = "index.html"
   }
 
